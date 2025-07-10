@@ -12,6 +12,7 @@ npm install file:/Users/tambrose/Code/plc-types
 ## Option 2: Git Repository Installation
 
 1. First, push this package to a Git repository:
+
 ```bash
 git init
 git add .
@@ -21,22 +22,28 @@ git push -u origin main
 ```
 
 2. Then install in other projects:
+
 ```bash
-npm install git+https://github.com/your-org/plc-types.git
+npm install git+https://github.com/pacific-lutheran-college/API-Types
 ```
 
 ## Option 3: NPM Registry (For Distribution)
 
 1. Create an account on npmjs.com
 2. Login to npm:
+
 ```bash
 npm login
 ```
+
 3. Publish the package:
+
 ```bash
 npm publish
 ```
+
 4. Install in other projects:
+
 ```bash
 npm install plc-types
 ```
@@ -47,10 +54,10 @@ Once installed, you can import types like this:
 
 ```typescript
 // Import specific types
-import { EPEligible, NavGroup } from 'plc-types';
+import { EPEligible, NavGroup } from "plc-types";
 
 // Import namespaced types (to avoid conflicts)
-import { SchoolboxAssessment, TASSEmployeeHR } from 'plc-types';
+import { SchoolboxAssessment, TASSEmployeeHR } from "plc-types";
 
 // Use the types
 const student: NavGroup = {
