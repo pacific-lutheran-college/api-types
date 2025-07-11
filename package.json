@@ -1,15 +1,17 @@
 {
-  "name": "API-Types",
+  "name": "api-types",
   "version": "1.0.0",
   "description": "Typescript type definitions used at Pacific Lutheran College",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist/**/*",
-    "types/**/*"
+    "types/**/*",
+    "tsconfig.json"
   ],
   "scripts": {
     "build": "tsc",
+    "prepare": "npm run build",
     "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "example": "npx ts-node example.ts"
@@ -24,8 +26,10 @@
   ],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "ts-node": "^10.9.2",
+  "dependencies": {
     "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2"
   }
 }
