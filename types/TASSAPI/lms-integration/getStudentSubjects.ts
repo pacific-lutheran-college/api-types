@@ -27,3 +27,5 @@ interface Subject {
   year_grp: number;
   year_num: number;
 }
+
+export type { Subject };
