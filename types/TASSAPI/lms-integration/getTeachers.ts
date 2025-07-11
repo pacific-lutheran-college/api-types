@@ -1,6 +1,6 @@
 interface TeachersDetailsResponse {
   __tassversion: string;
-  teachers: Teacher[];
+  teachers: TeacherDetails[];
   token: {
     timestamp: string;
     includephoto: boolean;
@@ -9,7 +9,7 @@ interface TeachersDetailsResponse {
   };
 }
 
-interface Teacher {
+interface TeacherDetails {
   surname: string;
   active_flag: "Y" | "N";
   teacher_name: string;
@@ -28,4 +28,4 @@ interface Teacher {
   given_names: string;
 }
 
-export { TeachersDetailsResponse };
+export { TeachersDetailsResponse, TeacherDetails };
