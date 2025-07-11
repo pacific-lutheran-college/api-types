@@ -2,7 +2,7 @@ export interface StudentCommRulesResponse {
   commrules: Commrule[];
   __tassversion: string;
   __invalid?: {};
-  token: Token;
+  token: CommToken;
 }
 
 export interface Commrule {
@@ -72,7 +72,7 @@ export interface Address {
   call_order: string;
 }
 
-export interface Token {
+export interface CommToken {
   code: string;
   commtype: string;
   timestamp: string;

@@ -1,17 +1,23 @@
-// Main type exports - commonly used types
+// CUSTOM
 export * from "./overdues";
+
+// AZURE COGNITIVE SERVICES
 export * from "./Azure_Cognitive_Services/documentIntelligence";
 
-// Direct exports from subdirectories
+// CLIPBOARD
 export * from "./Clipboard_API/getPreExplainedAbsences";
 export * from "./Clipboard_API/getStudents";
 export * from "./Clipboard_API/pagination";
+
+// SHAREPOINT
 export * from "./Sharepoint/DeviceLease";
 
-// Schoolbox types (specific exports to avoid conflicts)
-export type { NavGroup } from "./Schoolbox/groupMembers";
+// SCHOOLBOX
+export * from "./Schoolbox/groupMembers";
+export * from "./Schoolbox/user";
+export * from "./Schoolbox/assessment";
 
-// TASS API exports (excluding conflicting modules)
+// TASS
 export * from "./TASSAPI/assessment/setStudentSubjectResults";
 export * from "./TASSAPI/identity-management/getParents";
 export * from "./TASSAPI/lms-integration/getStudentSubjects";
@@ -27,11 +33,5 @@ export * from "./TASSAPI/student-academic-analytics/getStudentSubjects";
 export * from "./TASSAPI/student-details/getMCEECDYA";
 export * from "./TASSAPI/student-details/getMedicalGeneral";
 export * from "./TASSAPI/student-details/getStudentsDetails";
-
-// Namespace exports for modules with conflicts
-export * as TASSEmployeeHR from "./TASSAPI/employee-hr/getEmployeesDetails";
-export * as TASSCommunicationRules from "./TASSAPI/student-details/getCommunicationRulesDetails";
-
-// Re-export conflicting Schoolbox types with namespaces
-export * as SchoolboxAssessment from "./Schoolbox/assessment";
-export * as SchoolboxUser from "./Schoolbox/user";
+export * from "./TASSAPI/student-details/getCommunicationRulesDetails";
+export * from "./TASSAPI/employee-hr/getEmployeesDetails";

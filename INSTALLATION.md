@@ -85,6 +85,7 @@ const student: NavGroup = {
 If imports are not working after installation, try these steps:
 
 1. **Clear npm cache and reinstall:**
+
    ```bash
    npm cache clean --force
    rm -rf node_modules package-lock.json
@@ -92,10 +93,11 @@ If imports are not working after installation, try these steps:
    ```
 
 2. **Verify the package was built correctly:**
+
    ```bash
    # Check if dist folder exists in node_modules
    ls node_modules/api-types/dist/
-   
+
    # Check if index.d.ts exists
    cat node_modules/api-types/dist/index.d.ts
    ```

@@ -5,12 +5,12 @@ export interface EmployeeDetails {
 }
 
 export interface Employee {
-  address: Address;
+  address: StaffAddress;
   general: General;
   next_of_kin: NextOfKin;
 }
 
-export interface Address {
+export interface StaffAddress {
   town_suburb: string;
   address_line_1: string;
   address_barcode: string;
