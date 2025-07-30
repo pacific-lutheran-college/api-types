@@ -1,5 +1,7 @@
 // CUSTOM
 export * from "./overdues";
+// APPLE SCHOOL MANAGER
+export * from "./Apple_School_Manager/orgDevices";
 
 // AZURE COGNITIVE SERVICES
 export * from "./Azure_Cognitive_Services/documentIntelligence";
@@ -30,6 +32,7 @@ export * from "./TASSAPI/lms-integration/getTimetables";
 export * from "./TASSAPI/online-enrolments/getEnrolledStudents";
 export * from "./TASSAPI/student-academic-analytics/getStudentAbsences";
 export * from "./TASSAPI/student-academic-analytics/getStudentSubjects";
+export * from "./TASSAPI/student-academic-analytics/getStudentSubjectMapResults";
 export * from "./TASSAPI/student-details/getMCEECDYA";
 export * from "./TASSAPI/student-details/getMedicalGeneral";
 export * from "./TASSAPI/student-details/getStudentsDetails";

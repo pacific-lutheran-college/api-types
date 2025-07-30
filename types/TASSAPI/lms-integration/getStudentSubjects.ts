@@ -26,6 +26,7 @@ interface Subject {
   year_grp_desc: number | "P";
   year_grp: number;
   year_num: number;
+  sub_desc: string;
 }
 
 export type { Subject };
