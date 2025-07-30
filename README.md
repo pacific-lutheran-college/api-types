@@ -4,37 +4,30 @@ TypeScript type definitions used at Pacific Lutheran College.
 
 ## Installation
 
-### From npm (if published)
-```bash
-npm install plc-types
-```
-
 ### From Git Repository
-```bash
-npm install git+https://github.com/your-org/plc-types.git
-```
 
-### Local Development
 ```bash
-npm install /path/to/plc-types
+npm install git+https://github.com/pacific-lutheran-college/api-types
 ```
 
 ## Usage
 
 ### Basic Import
+
 ```typescript
-import { EPEligible, NavGroup } from 'plc-types';
+import { EPEligible, NavGroup } from "api-types";
 
 // Use the types
 const eligible: EPEligible = {
   code: "MATH",
-  years: [7, 8, 9]
+  years: [7, 8, 9],
 };
 ```
 
 ### Namespace Imports (for conflicting types)
+
 ```typescript
-import { SchoolboxAssessment, TASSEmployeeHR } from 'plc-types';
+import { SchoolboxAssessment, TASSEmployeeHR } from "api-types";
 
 // Use namespaced types to avoid conflicts
 const assessment: SchoolboxAssessment.Assessment = {
@@ -47,28 +40,33 @@ const employee: TASSEmployeeHR.Employee = {
 ```
 
 ### Module-specific Imports
+
 ```typescript
 // Import from specific modules
-import { Student } from 'plc-types/dist/Clipboard_API/getStudents';
-import { DeviceLease } from 'plc-types/dist/Sharepoint/DeviceLease';
+import { Student } from "api-types/dist/Clipboard_API/getStudents";
+import { DeviceLease } from "api-types/dist/Sharepoint/DeviceLease";
 ```
 
 ## Available Type Categories
 
 ### Core Types
+
 - **EducationPerfect**: `EPEligible`
 - **Operoo**: Various operational types
 - **Overdues**: Overdue tracking types
 - **DocumentIntelligence**: Document processing types
 
 ### API Types
+
 - **Clipboard API**: Student data, absences, pagination
 - **Schoolbox**: Assessments, users, groups
 - **TASS API**: Comprehensive school management system types
 - **Sharepoint**: Device leasing and document management
 
 ### Namespace Exports
+
 When types have naming conflicts, they're exported under namespaces:
+
 - `SchoolboxAssessment.*`
 - `SchoolboxUser.*`
 - `TASSEmployeeHR.*`
@@ -77,11 +75,13 @@ When types have naming conflicts, they're exported under namespaces:
 ## Development
 
 ### Building the Package
+
 ```bash
 npm run build
 ```
 
 ### Publishing
+
 ```bash
 npm run prepublishOnly  # Builds automatically
 npm publish
@@ -107,7 +107,3 @@ types/
     ├── student-academic-analytics/
     └── student-details/
 ```
-
-## License
-
-ISC
