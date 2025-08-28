@@ -38,3 +38,6 @@ export * from "./TASSAPI/student-details/getMedicalGeneral";
 export * from "./TASSAPI/student-details/getStudentsDetails";
 export * from "./TASSAPI/student-details/getCommunicationRulesDetails";
 export * from "./TASSAPI/employee-hr/getEmployeesDetails";
+
+// WEB HELPDESK
+export * from "./WebHelpDesk/Tickets";
