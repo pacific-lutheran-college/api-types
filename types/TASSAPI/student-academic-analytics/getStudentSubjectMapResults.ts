@@ -48,4 +48,4 @@ type LetterGrade =
   | "E"
   | "E-";
 
-export { SubjectResultsResponse, LetterGrade };
+export { SubjectResultsResponse, SubjectResult, LetterGrade };
