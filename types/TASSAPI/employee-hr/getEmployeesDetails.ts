@@ -1,7 +1,7 @@
 export interface EmployeeDetails {
   employees: Employee[];
   __tassversion: string;
-  token: Token;
+  token: EmployeeDetailsToken;
 }
 
 export interface Employee {
@@ -68,7 +68,7 @@ export interface NextOfKin {
   name: string;
 }
 
-export interface Token {
+export interface EmployeeDetailsToken {
   date: string;
   code: string;
   timestamp: string;

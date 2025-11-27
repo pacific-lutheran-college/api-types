@@ -30,6 +30,7 @@ export * from "./TASSAPI/lms-integration/getTeacherTimetable";
 export * from "./TASSAPI/lms-integration/getTimetableCalendar";
 export * from "./TASSAPI/lms-integration/getTimetables";
 export * from "./TASSAPI/online-enrolments/getEnrolledStudents";
+export * from "./TASSAPI/online-enrolments/getStudents";
 export * from "./TASSAPI/student-academic-analytics/getStudentAbsences";
 export * from "./TASSAPI/student-academic-analytics/getStudentSubjects";
 export * from "./TASSAPI/student-academic-analytics/getStudentSubjectMapResults";

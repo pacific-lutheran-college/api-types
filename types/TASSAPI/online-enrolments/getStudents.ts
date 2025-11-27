@@ -1,7 +1,7 @@
 export interface EnrolledStudents {
   __tassversion: string;
   token: Token;
-  students: Student[];
+  students: EnrolmentStudent[];
 }
 
 export interface Token {
@@ -10,7 +10,7 @@ export interface Token {
   studcode: string;
 }
 
-export interface Student {
+export interface EnrolmentStudent {
   language: string;
   nationality: string;
   contacts: Contact[];
