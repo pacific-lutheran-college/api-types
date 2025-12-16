@@ -54,7 +54,14 @@ interface StudentTimetable {
   ENTITYCODE: string;
   TT_ID: number;
   ENTITYNAME: string;
+  PERIODMIN: number;
   PERIODMAX: number;
+  DAYSMAX: number;
+  SEMESTER: number;
+  DAYMIN: number;
+  PCTUT_GRP: string;
+  YEAR_GRP: number;
+  YEAR_NUM: number;
   STUD_YEAR_GRP: number;
 }
 
