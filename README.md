@@ -80,6 +80,33 @@ When types have naming conflicts, they're exported under namespaces:
 npm run build
 ```
 
+### Monorepo Workspaces
+
+The repository now includes npm workspaces for package-level builds and generation.
+
+```bash
+# Build every workspace package
+npm run build:workspaces
+
+# Generate types for TASS API 2026.03 package
+npm run generate:tassapi-2026-03
+
+# Build only the TASS API 2026.03 package
+npm run build:tassapi-2026-03
+
+# Generate Zod schemas for TASS API 2026.03 companion package
+npm run generate:tassapi-zod-2026-03
+
+# Build only the TASS API 2026.03 Zod companion package
+npm run build:tassapi-zod-2026-03
+
+# Run a safeParse consumer example
+npm run example:zod
+
+# Run a safeParse list payload example
+npm run example:zod:list
+```
+
 ### Publishing
 
 ```bash

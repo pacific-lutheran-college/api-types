@@ -1,0 +1,34 @@
+{
+  "name": "@plc/tassapi-zod-2026-03",
+  "version": "2026.3.0",
+  "description": "Zod schemas and validation helpers for TASS API 2026.03",
+  "type": "module",
+  "types": "dist/index.d.ts",
+  "main": "dist/index.js",
+  "files": [
+    "dist/**/*",
+    "README.md"
+  ],
+  "scripts": {
+    "generate": "openapi-zod-client ./spec/openapi-spec.json -o ./src/generated/tassapi-zod.ts --export-schemas --export-types --complexity-threshold 1",
+    "build": "tsc -p tsconfig.json",
+    "clean": "rm -rf dist",
+    "prepare": "npm run generate && npm run build"
+  },
+  "keywords": [
+    "typescript",
+    "zod",
+    "validation",
+    "tass",
+    "openapi"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "@zodios/core": "^10.9.6",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "openapi-zod-client": "^1.18.3",
+    "typescript": "^5.8.3"
+  }
+}
