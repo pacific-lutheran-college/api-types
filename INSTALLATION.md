@@ -10,48 +10,103 @@ If you want to use this package in another project on the same machine:
 
 ```bash
 # In your target project directory
-npm install file:/Users/tambrose/Code/API-Types
+npm install file:/Users/tambrose/Code/api-types
 ```
 
-## Option 2: Git Repository Installation
+## Option 2: Private Git Repository Installation (Recommended)
 
-1. First, push this package to a Git repository:
+Install directly from the private repo (no public npm registry required).
+
+### HTTPS
 
 ```bash
-git init
+npm install git+https://github.com/pacific-lutheran-college/api-types.git
+```
+
+### SSH
+
+```bash
+npm install git+ssh://git@github.com/pacific-lutheran-college/api-types.git
+```
+
+### Install a specific branch or tag
+
+```bash
+# Branch
+npm install git+ssh://git@github.com/pacific-lutheran-college/api-types.git#2026.03
+
+# Tag
+npm install git+ssh://git@github.com/pacific-lutheran-college/api-types.git#v2026.03.0
+```
+
+**Note:** The package builds automatically on install via the `prepare` script.
+
+## Release Checklist (Private Git Repo)
+
+Use this checklist for each new TASS API release.
+
+1. Update package version in `packages/tassapi-types-2026-03/package.json`.
+2. Replace `packages/tassapi-types-2026-03/spec/openapi-spec.json` with the latest OpenAPI file.
+3. Regenerate and build:
+
+```bash
+npm run generate:tassapi-2026-03
+npm run build:tassapi-2026-03
+```
+
+4. Validate workspace build:
+
+```bash
+npm run build:workspaces
+```
+
+5. Commit changes and tag release:
+
+```bash
 git add .
-git commit -m "Initial commit of PLC types package"
-git remote add origin https://github.com/your-org/plc-types.git
-git push -u origin main
+git commit -m "Release TASS API types <version>"
+git tag tassapi-types-<version>
 ```
 
-2. Then install in other projects:
+6. Push branch and tag:
 
 ```bash
-npm install git+https://github.com/pacific-lutheran-college/API-Types
+git push origin <branch-name>
+git push origin tassapi-types-<version>
 ```
 
-**Note: The package will automatically build TypeScript files after installation thanks to the `prepare` script.**
+## Release Checklist (TASS Zod Package)
 
-## Option 3: NPM Registry (For Distribution)
+Use this checklist for each new TASS API Zod release.
 
-1. Create an account on npmjs.com
-2. Login to npm:
+1. Update package version in `packages/tassapi-zod-2026-03/package.json`.
+2. Replace `packages/tassapi-zod-2026-03/spec/openapi-spec.json` with the latest OpenAPI file.
+3. Regenerate and build:
 
 ```bash
-npm login
+npm run generate:tassapi-zod-2026-03
+npm run build:tassapi-zod-2026-03
 ```
 
-3. Publish the package:
+4. Validate workspace build:
 
 ```bash
-npm publish
+npm run build:workspaces
 ```
 
-4. Install in other projects:
+5. Commit changes and tag release:
 
 ```bash
-npm install api-types
+git add .
+git commit -m "Release TASS API Zod package <version>"
+git tag tassapi-zod-<version>
+```
+
+6. Push branch and tag:
+
+```bash
+git push origin <branch-name>
+git push origin tassapi-zod-<version>
 ```
 
 ## Usage in Your Projects
@@ -77,6 +132,35 @@ const student: NavGroup = {
 2. Run `npm run build` to compile
 3. Test changes with `npm run example`
 4. If using local installation, the changes will be reflected in dependent projects after rebuild
+
+## Workspace Workflow (Monorepo)
+
+This repository uses npm workspaces for package-level tasks.
+
+```bash
+# Build all workspace packages
+npm run build:workspaces
+
+# Generate TASS API 2026.03 types from OpenAPI
+npm run generate:tassapi-2026-03
+
+# Build only the TASS API 2026.03 package
+npm run build:tassapi-2026-03
+
+# Generate TASS API 2026.03 Zod schemas from OpenAPI
+npm run generate:tassapi-zod-2026-03
+
+# Build only the TASS API 2026.03 Zod package
+npm run build:tassapi-zod-2026-03
+```
+
+TASS API 2026.03 package location:
+
+`packages/tassapi-types-2026-03`
+
+TASS API 2026.03 Zod package location:
+
+`packages/tassapi-zod-2026-03`
 
 ## Troubleshooting
 
