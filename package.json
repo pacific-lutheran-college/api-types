@@ -1,61 +1,12 @@
 {
   "name": "api-types",
-  "version": "1.0.0",
-  "description": "Typescript type definitions used at Pacific Lutheran College",
+  "private": true,
   "workspaces": [
     "packages/*"
   ],
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    },
-    "./tassapi-types-2026-03": {
-      "types": "./packages/tassapi-types-2026-03/dist/index.d.ts",
-      "default": "./packages/tassapi-types-2026-03/dist/index.js"
-    },
-    "./tassapi-zod-2026-03": {
-      "types": "./packages/tassapi-zod-2026-03/dist/index.d.ts",
-      "default": "./packages/tassapi-zod-2026-03/dist/index.js"
-    }
-  },
-  "files": [
-    "dist/**/*",
-    "types/**/*",
-    "packages/tassapi-types-2026-03/dist/**/*",
-    "packages/tassapi-zod-2026-03/dist/**/*",
-    "tsconfig.json"
-  ],
   "scripts": {
-    "build": "tsc",
-    "build:workspaces": "npm run build --workspaces",
-    "build:tassapi-2026-03": "npm run build --workspace @plc/tassapi-types-2026-03",
-    "build:tassapi-zod-2026-03": "npm run build --workspace @plc/tassapi-zod-2026-03",
-    "generate:tassapi-2026-03": "npm run generate --workspace @plc/tassapi-types-2026-03",
-    "generate:tassapi-zod-2026-03": "npm run generate --workspace @plc/tassapi-zod-2026-03",
-    "example:zod": "node ./examples/tassapi-zod-safe-parse.mjs",
-    "example:zod:list": "node ./examples/tassapi-zod-safe-parse-list.mjs",
-    "prepare": "npm run build && npm run build:workspaces",
-    "prepublishOnly": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "example": "npx ts-node example.ts"
-  },
-  "keywords": [
-    "typescript",
-    "types",
-    "pacific-lutheran-college",
-    "schoolbox",
-    "tass",
-    "clipboard-api"
-  ],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "typescript": "^5.8.3"
-  },
-  "devDependencies": {
-    "ts-node": "^10.9.2"
+    "build": "npm run build --workspaces",
+    "generate": "npm run generate --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present"
   }
 }

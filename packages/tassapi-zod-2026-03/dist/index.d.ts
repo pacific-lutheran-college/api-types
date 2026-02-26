@@ -35,4 +35,5 @@
  * const students = StudentSummarySchema.array().parse(raw)
  * ```
  */
-export { schemas } from "./generated.js";
+export { schemas } from './generated.js';
+//# sourceMappingURL=index.d.ts.map

@@ -1,3 +1,4 @@
+"use strict";
 /**
  * TASS API types — v2026.03
  *
@@ -23,20 +24,5 @@
  * type MyProjection = SelectResponse<StudentResponse, 'stud_code' | 'dob' | 'gender'>
  * ```
  */
-
-// ─── Generated types (source of truth) ──────────────────────────────────────
-export type { paths, components, operations } from "./generated.js";
-
-// ─── Utility types ───────────────────────────────────────────────────────────
-export type { SelectResponse } from "./utils.js";
-
-// ─── Named projections ───────────────────────────────────────────────────────
-export type {
-  StudentSummary,
-  StudentCard,
-  StudentContact,
-  StudentEnrolment,
-  EmployeeSummary,
-  EmployeeCard,
-  EmployeeContact,
-} from "./projections/index.js";
+Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=index.js.map

@@ -1,136 +1,78 @@
-# PLC Types
+# api-types
 
-TypeScript type definitions used at Pacific Lutheran College.
+Internal TypeScript type packages for company APIs. Consumed as git dependencies by other projects.
 
-## Installation
+## Packages
 
-### From Git Repository
+| Package                                                     | Description                               |
+| ----------------------------------------------------------- | ----------------------------------------- |
+| [`tassapi-types-2026-03`](./packages/tassapi-types-2026-03) | TypeScript types for TASS API v2026.03    |
+| [`tassapi-zod-2026-03`](./packages/tassapi-zod-2026-03)     | Zod runtime schemas for TASS API v2026.03 |
 
-```bash
-npm install git+https://github.com/pacific-lutheran-college/api-types
+## Repository structure
+
 ```
-
-## Usage
-
-### Basic Import
-
-```typescript
-import { EPEligible, NavGroup } from "api-types";
-
-// Use the types
-const eligible: EPEligible = {
-  code: "MATH",
-  years: [7, 8, 9],
-};
+api-types/
+├── specs/                          # Source OpenAPI specifications
+│   └── tassapi-2026-03.json
+├── packages/
+│   ├── tassapi-types-2026-03/      # Types-only package
+│   └── tassapi-zod-2026-03/        # Zod schemas companion package
+├── tsconfig.base.json              # Shared TypeScript config
+└── package.json                    # npm workspaces root
 ```
-
-### Namespace Imports (for conflicting types)
-
-```typescript
-import { SchoolboxAssessment, TASSEmployeeHR } from "api-types";
-
-// Use namespaced types to avoid conflicts
-const assessment: SchoolboxAssessment.Assessment = {
-  // ... assessment data
-};
-
-const employee: TASSEmployeeHR.Employee = {
-  // ... employee data
-};
-```
-
-### Module-specific Imports
-
-```typescript
-// Import from specific modules
-import { Student } from "api-types/dist/Clipboard_API/getStudents";
-import { DeviceLease } from "api-types/dist/Sharepoint/DeviceLease";
-```
-
-## Available Type Categories
-
-### Core Types
-
-- **EducationPerfect**: `EPEligible`
-- **Operoo**: Various operational types
-- **Overdues**: Overdue tracking types
-- **DocumentIntelligence**: Document processing types
-
-### API Types
-
-- **Clipboard API**: Student data, absences, pagination
-- **Schoolbox**: Assessments, users, groups
-- **TASS API**: Comprehensive school management system types
-- **Sharepoint**: Device leasing and document management
-
-### Namespace Exports
-
-When types have naming conflicts, they're exported under namespaces:
-
-- `SchoolboxAssessment.*`
-- `SchoolboxUser.*`
-- `TASSEmployeeHR.*`
-- `TASSCommunicationRules.*`
 
 ## Development
 
-### Building the Package
+### Prerequisites
+
+- Node.js 18+
+- npm 8+
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Build all packages
 
 ```bash
 npm run build
 ```
 
-### Monorepo Workspaces
-
-The repository now includes npm workspaces for package-level builds and generation.
+### Type-check all packages
 
 ```bash
-# Build every workspace package
-npm run build:workspaces
-
-# Generate types for TASS API 2026.03 package
-npm run generate:tassapi-2026-03
-
-# Build only the TASS API 2026.03 package
-npm run build:tassapi-2026-03
-
-# Generate Zod schemas for TASS API 2026.03 companion package
-npm run generate:tassapi-zod-2026-03
-
-# Build only the TASS API 2026.03 Zod companion package
-npm run build:tassapi-zod-2026-03
-
-# Run a safeParse consumer example
-npm run example:zod
-
-# Run a safeParse list payload example
-npm run example:zod:list
+npm run typecheck
 ```
 
-### Publishing
+### Regenerate types from spec
+
+Run from the relevant package directory, or from the root:
 
 ```bash
-npm run prepublishOnly  # Builds automatically
-npm publish
+npm run generate --workspaces --if-present
 ```
 
-## File Structure
+## Adding a new API version or new API
 
-```
-types/
-├── index.ts                    # Main export file
-├── educationPerfect.ts         # Education Perfect types
-├── operoo.ts                   # Operoo types
-├── schoolbox.ts                # Core Schoolbox types
-├── Clipboard_API/              # Clipboard API modules
-├── Schoolbox/                  # Extended Schoolbox types
-├── Sharepoint/                 # Sharepoint integration types
-└── TASSAPI/                    # TASS API types
-    ├── assessment/
-    ├── employee-hr/
-    ├── identity-management/
-    ├── lms-integration/
-    ├── online-enrolments/
-    ├── student-academic-analytics/
-    └── student-details/
+1. Place the OpenAPI spec in `specs/` using the naming convention `<api>-<version>.json`.
+2. Create a new package directory under `packages/` following the existing structure.
+3. Run `npm install` from the root to link the new workspace.
+4. Run `npm run generate` inside the new package to produce `src/generated.ts`.
+5. Add hand-authored projections in `src/projections/` as needed.
+6. Run `npm run build` and commit.
+
+## Consuming packages
+
+Add as a git dependency in the consuming project's `package.json`, scoping to the specific package subdirectory:
+
+```json
+{
+  "dependencies": {
+    "tassapi-types-2026-03": "git+https://github.com/your-org/api-types.git#workspace=tassapi-types-2026-03",
+    "tassapi-zod-2026-03": "git+https://github.com/your-org/api-types.git#workspace=tassapi-zod-2026-03"
+  }
+}
 ```

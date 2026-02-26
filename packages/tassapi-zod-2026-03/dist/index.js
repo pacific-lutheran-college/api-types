@@ -1,3 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.schemas = void 0;
 /**
  * TASS API Zod schemas — v2026.03
  *
@@ -35,4 +38,6 @@
  * const students = StudentSummarySchema.array().parse(raw)
  * ```
  */
-export { schemas } from "./generated.js";
+var generated_js_1 = require("./generated.js");
+Object.defineProperty(exports, "schemas", { enumerable: true, get: function () { return generated_js_1.schemas; } });
+//# sourceMappingURL=index.js.map

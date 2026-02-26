@@ -1,8 +1,10 @@
 # Dependencies
 node_modules/
 
-# Build output
-dist/
+# Build output — dist/ is committed in packages/ so consumers can install
+# via git dependency without needing a build step.
+# Only ignore dist at the root level (no root-level build).
+/dist/
 
 # TypeScript cache
 *.tsbuildinfo

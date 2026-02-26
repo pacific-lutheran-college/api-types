@@ -1,29 +1,33 @@
 {
-  "name": "@plc/tassapi-types-2026-03",
-  "version": "2026.3.0",
-  "description": "Generated TypeScript types for TASS API 2026.03",
-  "type": "module",
-  "types": "dist/index.d.ts",
+  "name": "tassapi-types-2026-03",
+  "version": "1.0.0",
+  "description": "TypeScript types for TASS API v2026.03",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./projections": {
+      "import": "./dist/projections/index.js",
+      "require": "./dist/projections/index.js",
+      "types": "./dist/projections/index.d.ts"
+    }
+  },
   "files": [
-    "dist/**/*",
-    "README.md"
+    "dist",
+    "src"
   ],
   "scripts": {
-    "generate": "openapi-typescript ./spec/openapi-spec.json -o ./src/generated/tassapi.ts",
-    "build": "tsc -p tsconfig.json",
-    "clean": "rm -rf dist",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "generate": "openapi-typescript ../../specs/tassapi-2026-03.json -o src/generated.ts",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
   },
-  "keywords": [
-    "typescript",
-    "types",
-    "tass",
-    "openapi"
-  ],
-  "license": "ISC",
   "devDependencies": {
-    "openapi-typescript": "^7.6.1",
-    "typescript": "^5.8.3"
+    "openapi-typescript": "^7.13.0",
+    "typescript": "^5.9.3"
   }
 }
