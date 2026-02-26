@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "commonjs",
-    "lib": ["ES2020"],
+    "target": "es2024",
+    "module": "es2022",
+    "lib": ["ES2024"],
     "declaration": true,
     "outDir": "./dist",
-    "rootDir": "./types",
+    "rootDir": ".",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -15,7 +15,8 @@
     "allowSyntheticDefaultImports": true
   },
   "include": [
-    "types/**/*"
+    "packages/tassapi-types-2026-03/src/generated/*.ts",
+    "packages/tassapi-zod-2026-03/src/generated/*.ts"
   ],
   "exclude": [
     "node_modules",

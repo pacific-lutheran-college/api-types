@@ -1,11 +1,11 @@
 # TASS API Types (2026.03)
 
-Generated TypeScript types for TASS API version `2026.03` from OpenAPI.
+Generated TypeScript types for TASS API version `2026.3.0` from OpenAPI.
 
 ## Install
 
 ```bash
-npm install @plc/tassapi-types-2026-03
+npm install git+ssh://git@github.com/pacific-lutheran-college/api-types.git
 ```
 
 ## Usage

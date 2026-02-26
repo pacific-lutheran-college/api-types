@@ -1181,7 +1181,7 @@ type AssessmentCriteriaResponse = Partial<{
   obj_code: string;
   obj_desc: string;
   max_val: number | null;
-  assessment_method: AssessmentMethodResponse;
+  assessment_method: AssessmentMethodResponse | null;
 }>;
 type AssessmentMethodResponse = Partial<{
   ass_code: string;
@@ -1235,7 +1235,7 @@ const ExceptionDetails: z.ZodType<ExceptionDetails> = z
   .partial();
 const ValidationExceptionDetails: z.ZodType<ValidationExceptionDetails> =
   ExceptionDetails.and(
-    z.object({ errors: z.record(z.array(z.string())) }).partial()
+    z.object({ errors: z.record(z.array(z.string())) }).partial(),
   );
 const cmpy_code = z.string();
 const AbsenceReasonOptionsResponse = z
@@ -1440,7 +1440,7 @@ const OperationBase: z.ZodType<OperationBase> = z
   })
   .partial();
 const Operation: z.ZodType<Operation> = OperationBase.and(
-  z.object({ value: z.unknown().nullable() }).partial()
+  z.object({ value: z.unknown().nullable() }).partial(),
 );
 const Information_PatchStudent_Body = z.array(Operation);
 const StudentMceecdyaResponse = z
@@ -1569,10 +1569,10 @@ const UDFieldReferenceValue: z.ZodType<UDFieldReferenceValue> = z
   })
   .partial();
 const UDCodeFieldDetails = UDFieldDetails.and(
-  z.object({ reference_values: z.array(UDFieldReferenceValue) }).partial()
+  z.object({ reference_values: z.array(UDFieldReferenceValue) }).partial(),
 );
 const UDAttachmentFieldDetails = UDFieldDetails.and(
-  z.object({ field_number: z.number().int() }).partial()
+  z.object({ field_number: z.number().int() }).partial(),
 );
 const UDFieldTypes: z.ZodType<UDFieldTypes> = z
   .object({
@@ -1878,7 +1878,7 @@ const StudentUDFieldOptionReferenceValue: z.ZodType<StudentUDFieldOptionReferenc
 const StudentUDCodeFieldOptionDetails = StudentUDFieldOptionDetails.and(
   z
     .object({ reference_values: z.array(StudentUDFieldOptionReferenceValue) })
-    .partial()
+    .partial(),
 );
 const StudentUDFieldOptionTypes: z.ZodType<StudentUDFieldOptionTypes> = z
   .object({
