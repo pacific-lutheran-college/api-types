@@ -4,12 +4,6 @@
   "workspaces": [
     "packages/*"
   ],
-  "files": [
-    "packages/tassapi-zod-2026-03/dist",
-    "packages/tassapi-zod-2026-03/dist/**",
-    "packages/tassapi-types-2026-03/dist",
-    "packages/tassapi-types-2026-03/dist/**"
-  ],
   "exports": {
     "./tassapi-zod": {
       "import": "./packages/tassapi-zod-2026-03/dist/index.js",
