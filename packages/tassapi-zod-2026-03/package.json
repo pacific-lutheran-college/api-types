@@ -13,7 +13,7 @@
     "generate": "openapi-zod-client ./spec/openapi-spec.json -o ./src/generated/tassapi-zod.ts --export-schemas --export-types --complexity-threshold 1",
     "build": "tsc -p tsconfig.json",
     "clean": "rm -rf dist",
-    "prepare": "npm run generate && npm run build"
+    "prepare": "npm run build"
   },
   "keywords": [
     "typescript",
