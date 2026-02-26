@@ -1181,7 +1181,7 @@ type AssessmentCriteriaResponse = Partial<{
   obj_code: string;
   obj_desc: string;
   max_val: number | null;
-  assessment_method: AssessmentMethodResponse | null;
+  assessment_method: AssessmentMethodResponse;
 }>;
 type AssessmentMethodResponse = Partial<{
   ass_code: string;
@@ -3195,7 +3195,7 @@ const AssessmentCriteriaResponse = z
     obj_code: z.string(),
     obj_desc: z.string(),
     max_val: z.number().int().nullable(),
-    assessment_method: AssessmentMethodResponse.nullable(),
+    assessment_method: AssessmentMethodResponse,
   })
   .partial() as unknown as z.ZodType<AssessmentCriteriaResponse>;
 const ActivityResponse: z.ZodType<ActivityResponse> = z
