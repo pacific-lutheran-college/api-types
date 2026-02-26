@@ -4,6 +4,8 @@ Companion runtime validation package for TASS API 2026.03.
 
 ## Install
 
+> **Note:** If your project already has this package installed via the private git repository, skip this step.
+
 ```bash
 npm install @plc/tassapi-zod-2026-03
 ```
@@ -11,8 +13,11 @@ npm install @plc/tassapi-zod-2026-03
 ## Usage
 
 ```ts
-import { parseWithSchema, safeParseWithSchema } from "@plc/tassapi-zod-2026-03";
-import { schemas } from "@plc/tassapi-zod-2026-03";
+import {
+  parseWithSchema,
+  safeParseWithSchema,
+} from "api-types/tassapi-zod-2026-03";
+import { schemas } from "api-types/tassapi-zod-2026-03";
 
 const validated = parseWithSchema(
   schemas.StudentCommunicationRulesResponse,

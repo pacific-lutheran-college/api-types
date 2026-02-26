@@ -4,6 +4,8 @@ Generated TypeScript types for TASS API version `2026.3.0` from OpenAPI.
 
 ## Install
 
+> **Note:** If your project already has this package installed via the private git repository, skip this step.
+
 ```bash
 npm install git+ssh://git@github.com/pacific-lutheran-college/api-types.git
 ```

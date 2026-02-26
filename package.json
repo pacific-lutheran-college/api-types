@@ -7,9 +7,25 @@
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./tassapi-types-2026-03": {
+      "types": "./packages/tassapi-types-2026-03/dist/index.d.ts",
+      "default": "./packages/tassapi-types-2026-03/dist/index.js"
+    },
+    "./tassapi-zod-2026-03": {
+      "types": "./packages/tassapi-zod-2026-03/dist/index.d.ts",
+      "default": "./packages/tassapi-zod-2026-03/dist/index.js"
+    }
+  },
   "files": [
     "dist/**/*",
     "types/**/*",
+    "packages/tassapi-types-2026-03/dist/**/*",
+    "packages/tassapi-zod-2026-03/dist/**/*",
     "tsconfig.json"
   ],
   "scripts": {
@@ -21,7 +37,7 @@
     "generate:tassapi-zod-2026-03": "npm run generate --workspace @plc/tassapi-zod-2026-03",
     "example:zod": "node ./examples/tassapi-zod-safe-parse.mjs",
     "example:zod:list": "node ./examples/tassapi-zod-safe-parse-list.mjs",
-    "prepare": "npm run build",
+    "prepare": "npm run build && npm run build:workspaces",
     "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "example": "npx ts-node example.ts"
