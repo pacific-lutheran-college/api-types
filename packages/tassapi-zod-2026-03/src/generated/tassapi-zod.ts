@@ -3197,7 +3197,7 @@ const AssessmentCriteriaResponse = z
     max_val: z.number().int().nullable(),
     assessment_method: AssessmentMethodResponse.nullable(),
   })
-  .partial() as z.ZodType<AssessmentCriteriaResponse>;
+  .partial() as unknown as z.ZodType<AssessmentCriteriaResponse>;
 const ActivityResponse: z.ZodType<ActivityResponse> = z
   .object({
     cmpy_code: z.string(),
