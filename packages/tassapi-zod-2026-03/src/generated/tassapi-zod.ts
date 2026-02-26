@@ -3190,14 +3190,14 @@ const AssessmentMethodResponse: z.ZodType<AssessmentMethodResponse> = z
     validations: z.array(ValidationResponse),
   })
   .partial();
-const AssessmentCriteriaResponse: z.ZodType<AssessmentCriteriaResponse> = z
+const AssessmentCriteriaResponse = z
   .object({
     obj_code: z.string(),
     obj_desc: z.string(),
     max_val: z.number().int().nullable(),
     assessment_method: AssessmentMethodResponse.nullable(),
   })
-  .partial();
+  .partial() as z.ZodType<AssessmentCriteriaResponse>;
 const ActivityResponse: z.ZodType<ActivityResponse> = z
   .object({
     cmpy_code: z.string(),
