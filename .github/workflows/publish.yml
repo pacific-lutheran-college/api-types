@@ -27,18 +27,29 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Build TASS Package
-        run: npm run build -w packages/tass
+      - name: Build All Packages
+        run: npm run build --workspaces
 
-      - name: Publish TASS Package
-        run: npm publish -w packages/tass
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build Schoolbox Package
-        run: npm run build -w packages/schoolbox
-
-      - name: Publish Schoolbox Package
-        run: npm publish -w packages/schoolbox
+      - name: Publish Packages
+        run: |
+          for package in packages/*; do
+            if [ -d "$package" ]; then
+              echo "Checking $package..."
+              
+              # Get package name and version
+              NAME=$(jq -r .name $package/package.json)
+              VERSION=$(jq -r .version $package/package.json)
+              
+              echo "Package: $NAME @ $VERSION"
+              
+              # Check if version exists
+              if npm view "$NAME@$VERSION" version &> /dev/null; then
+                echo "Version $VERSION of $NAME already exists. Skipping..."
+              else
+                echo "Publishing $NAME @ $VERSION..."
+                npm publish -w "$package"
+              fi
+            fi
+          done
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
