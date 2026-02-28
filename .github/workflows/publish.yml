@@ -1,0 +1,36 @@
+name: Publish Packages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'packages/**'
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@pacific-lutheran-college'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build TASS Package
+        run: npm run build -w packages/tass
+
+      - name: Publish TASS Package
+        run: npm publish -w packages/tass
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
