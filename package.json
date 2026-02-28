@@ -1,29 +1,20 @@
 {
-  "name": "api-types",
-  "version": "1.0.0",
+  "name": "@pacific-lutheran-college/api-types-root",
+  "private": true,
   "workspaces": [
     "packages/*"
   ],
-  "exports": {
-    "./tassapi-zod": {
-      "import": "./packages/tassapi-zod-2026-03/dist/index.js",
-      "require": "./packages/tassapi-zod-2026-03/dist/index.js",
-      "types": "./packages/tassapi-zod-2026-03/dist/index.d.ts"
-    },
-    "./tassapi-types": {
-      "import": "./packages/tassapi-types-2026-03/dist/index.js",
-      "require": "./packages/tassapi-types-2026-03/dist/index.js",
-      "types": "./packages/tassapi-types-2026-03/dist/index.d.ts"
-    },
-    "./tassapi-types/projections": {
-      "import": "./packages/tassapi-types-2026-03/dist/projections/index.js",
-      "require": "./packages/tassapi-types-2026-03/dist/projections/index.js",
-      "types": "./packages/tassapi-types-2026-03/dist/projections/index.d.ts"
-    }
-  },
   "scripts": {
-    "build": "npm run build --workspaces",
-    "generate": "npm run generate --workspaces --if-present",
-    "typecheck": "npm run typecheck --workspaces --if-present"
+    "generate:tass": "tsx scripts/generate-tass.ts"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.0",
+    "swagger-typescript-api": "^13.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0",
+    "@types/node": "^22.0.0"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }

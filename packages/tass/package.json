@@ -1,0 +1,25 @@
+{
+  "name": "@pacific-lutheran-college/api-types-tass",
+  "version": "0.0.1",
+  "description": "TypeScript definitions for TASS API",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pacific-lutheran-college/api-types.git",
+    "directory": "packages/tass"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
