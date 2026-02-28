@@ -5,14 +5,17 @@
     "packages/*"
   ],
   "scripts": {
-    "generate:tass": "tsx scripts/generate-tass.ts"
+    "generate:tass": "tsx scripts/generate-tass.ts",
+    "generate:schoolbox": "tsx scripts/generate-schoolbox.ts"
   },
   "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^22.0.0",
+    "js-yaml": "^4.1.1",
     "prettier": "^3.0.0",
     "swagger-typescript-api": "^13.0.0",
     "tsx": "^4.0.0",
-    "typescript": "^5.0.0",
-    "@types/node": "^22.0.0"
+    "typescript": "^5.0.0"
   },
   "engines": {
     "node": ">=22"

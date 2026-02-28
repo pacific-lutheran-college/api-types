@@ -7,6 +7,7 @@ This repository contains TypeScript type definitions for various internal and ex
 Current available packages:
 
 - **[@pacific-lutheran-college/api-types-tass](packages/tass)**: Type definitions for the TASS API.
+- **[@pacific-lutheran-college/api-types-schoolbox](packages/schoolbox)**: Type definitions for the Schoolbox API.
 
 ## 🚀 Installation & Usage
 
@@ -28,7 +29,7 @@ Create or update the `.npmrc` file in the root of your consumer project:
 Install the specific package you need:
 
 ```bash
-npm install @pacific-lutheran-college/api-types-tass
+npm install @pacific-lutheran-college/api-types-schoolbox
 ```
 
 ### 3. Usage in Code
@@ -39,14 +40,18 @@ You can import specific service modules to keep your bundle size optimal:
 import { Student } from "@pacific-lutheran-college/api-types-tass";
 // or specifically
 import { Attendance } from "@pacific-lutheran-college/api-types-tass/student";
+import { User, Calendar } from "@pacific-lutheran-college/api-types-schoolbox";
 
 // Usage
 const studentDetails: Student.GetDetailsResponse = await fetchStudent(12345);
+const schoolboxUser = await schoolbox.users.get(1);
 ```
 
 Or import everything:
 
 ```typescript
+import * as Tass from "@pacific-lutheran-college/api-types-tass";
+import * as Schoolbox from "@pacific-lutheran-college/api-types-schoolbox
 import * as Tass from "@pacific-lutheran-college/api-types-tass";
 ```
 
