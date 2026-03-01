@@ -144,20 +144,6 @@ Add a `tsconfig.json` extending the base configuration:
 
 If you have an OpenAPI spec, create a generation script in `scripts/` similar to `scripts/generate-tass.ts` and add a script to the root `package.json`.
 
-### 5. Update CI/CD
-
-Update `.github/workflows/publish.yml` to include your new package in the build and publish steps:
-
-```yaml
-- name: Build Schoolbox Package
-  run: npm run build -w packages/schoolbox
-
-- name: Publish Schoolbox Package
-  run: npm publish -w packages/schoolbox
-  env:
-    NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-```
-
 ## 🛠 Development
 
 ### Setup
