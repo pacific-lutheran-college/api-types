@@ -1,0 +1,42 @@
+{
+  "name": "@pacific-lutheran-college/api-types-tass-legacy",
+  "version": "0.0.1",
+  "description": "TypeScript definitions for legacy TASS API",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./*": {
+      "types": "./dist/*/index.d.ts",
+      "default": "./dist/*/index.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*/index.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pacific-lutheran-college/api-types.git",
+    "directory": "packages/tass-legacy"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
