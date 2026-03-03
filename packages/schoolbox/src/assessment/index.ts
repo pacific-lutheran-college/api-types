@@ -507,6 +507,26 @@ export interface AssessmentList {
   metadata?: ListMetadata;
 }
 
+export interface AssessmentPostFeedbackPost200Response {
+  /** @example true */
+  success?: boolean;
+  /** @example "OK" */
+  message?: string;
+  id?: number;
+}
+
+export interface AssessmentPostSubmissionPost200Response {
+  /** @example true */
+  success?: boolean;
+  /** @example "OK" */
+  message?: string;
+  /**
+   * The ID of the created submission
+   * @example 102
+   */
+  id?: number;
+}
+
 /** The type of the uploaded file. */
 export enum FileTypeEnum {
   Image = "image",

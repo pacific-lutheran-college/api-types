@@ -608,6 +608,279 @@ export interface UserGroupMembershipWritableFields {
 }
 
 /**
+ * Readable Group Membership Fields
+ * A group within Schoolbox.
+ *
+ * This contains some of the folder's fields in this context.
+ */
+export type UserGroupMembershipList = {
+  /**
+   * ID
+   * The ID of the user.
+   */
+  id?: number;
+  /**
+   * The name of the group.
+   *
+   * In this context, this is the name of the group's folder.
+   * @example "Basketball"
+   */
+  name?: string;
+  /**
+   * The level of access that users have to this group.
+   *
+   * * `private`: membership is by invitation only
+   * * `moderated`: users may apply for membership, but must be approved
+   * * `free`: users may join and leave at any time
+   */
+  type?: UserGroupMembershipListTypeEnum;
+  /**
+   * The level of subscription that is allowed to this group.
+   *
+   * * `false`: users may subscribe to this group's events
+   * * `true`: users must subscribe to this group's events, and may not
+   *   unsubscribe
+   * @example true
+   */
+  isForceFollow?: boolean;
+  /** Does the user have this group set as a favourite? */
+  isFavourite?: boolean;
+  /**
+   * Is this user subscribed to this group's events? If so, they will be
+   * notified when an event occurs.
+   *
+   * Note that the group administrator may:
+   * * Force Follow, so that users may not opt out of notifications
+   * * Disable Notifications, so that users never receive notifications
+   */
+  isNotificationsOn?: boolean;
+  /**
+   * The enrolment status of the user for this group.
+   *
+   * * `enroled`: the user is enroled in the group with the 'membership' permission
+   * * `notEnroled`: the user is not enroled in the group
+   * * `pending`: the user has requested to join the group and is currently
+   *   awaiting approval by a group admin
+   */
+  enrolmentStatus?: UserGroupMembershipListEnrolmentStatusEnum;
+  /**
+   * The type of membership that this user has.
+   *
+   * * `admin`: the user is the administrator of this group: they may add
+   *   and remove members, change the group's permissions and disband the
+   *   group
+   * * `write`: the user may create content within the group
+   * * `read`: the user may view content within the group, and may be
+   *   notified of and may participate in group events
+   * * `none`: the user is not a member of the group
+   */
+  membership?: UserGroupMembershipListMembershipEnum;
+  _links?: {
+    /**
+     * Gives the homepage link to the group, or NULL if the group has no homepage.
+     * @format uri-reference
+     * @example "/homepage/83"
+     */
+    homepage?: string | null;
+  };
+}[];
+
+/**
+ * Readable Group Membership Fields
+ * A group within Schoolbox.
+ *
+ * This contains some of the folder's fields in this context.
+ */
+export interface UserGroupMembershipItem {
+  /**
+   * ID
+   * The ID of the user.
+   */
+  id?: number;
+  /**
+   * The name of the group.
+   *
+   * In this context, this is the name of the group's folder.
+   * @example "Basketball"
+   */
+  name?: string;
+  /**
+   * The level of access that users have to this group.
+   *
+   * * `private`: membership is by invitation only
+   * * `moderated`: users may apply for membership, but must be approved
+   * * `free`: users may join and leave at any time
+   */
+  type?: UserGroupMembershipItemTypeEnum;
+  /**
+   * The level of subscription that is allowed to this group.
+   *
+   * * `false`: users may subscribe to this group's events
+   * * `true`: users must subscribe to this group's events, and may not
+   *   unsubscribe
+   * @example true
+   */
+  isForceFollow?: boolean;
+  /** Does the user have this group set as a favourite? */
+  isFavourite?: boolean;
+  /**
+   * Is this user subscribed to this group's events? If so, they will be
+   * notified when an event occurs.
+   *
+   * Note that the group administrator may:
+   * * Force Follow, so that users may not opt out of notifications
+   * * Disable Notifications, so that users never receive notifications
+   */
+  isNotificationsOn?: boolean;
+  /**
+   * The enrolment status of the user for this group.
+   *
+   * * `enroled`: the user is enroled in the group with the 'membership' permission
+   * * `notEnroled`: the user is not enroled in the group
+   * * `pending`: the user has requested to join the group and is currently
+   *   awaiting approval by a group admin
+   */
+  enrolmentStatus?: UserGroupMembershipItemEnrolmentStatusEnum;
+  /**
+   * The type of membership that this user has.
+   *
+   * * `admin`: the user is the administrator of this group: they may add
+   *   and remove members, change the group's permissions and disband the
+   *   group
+   * * `write`: the user may create content within the group
+   * * `read`: the user may view content within the group, and may be
+   *   notified of and may participate in group events
+   * * `none`: the user is not a member of the group
+   */
+  membership?: UserGroupMembershipItemMembershipEnum;
+  _links?: {
+    /**
+     * Gives the homepage link to the group, or NULL if the group has no homepage.
+     * @format uri-reference
+     * @example "/homepage/83"
+     */
+    homepage?: string | null;
+  };
+}
+
+/**
+ * User list
+ * A list of users
+ */
+export interface GroupUserList {
+  /** Identifying ID number for most objects within Schoolbox */
+  groupId?: Id;
+  /** The name of the group. */
+  groupName?: string;
+  settings?: {
+    /**
+     * Either the ?new value from the request URL, or 0 (if ?new does not exist).
+     * @example 0
+     */
+    new?: number;
+    /**
+     * The level of access that users have to this group.
+     *
+     * * `private`: membership is by invitation only
+     * * `moderated`: users may apply for membership, but must be approved
+     * * `free`: users may join and leave at any time
+     * @example "private"
+     */
+    access?: GroupUserListAccessEnum;
+    /**
+     * Whether notifications are enabled for this group.
+     * @example true
+     */
+    isNotificationsEnabled?: boolean;
+    /**
+     * The level of subscription that is allowed to this group.
+     *
+     * * `false`: users may subscribe to this group's events
+     * * `true`: users must subscribe to this group's events, and may not
+     *   unsubscribe
+     * @example true
+     */
+    isForceFollow?: boolean;
+  };
+  /** @uniqueItems true */
+  members?: {
+    /** Identifying ID number for most objects within Schoolbox */
+    id?: Id;
+    _links?: {
+      /** @example "/search/user/2" */
+      profile?: string;
+      /** @example "/portrait.php?id=2&size=square64" */
+      avatar?: string;
+    };
+    /**
+     * The user's title (Mr., Ms., etc.).
+     * @example "Ms"
+     */
+    title?: string | null;
+    /**
+     * The user's first name.
+     *
+     * Schoolbox doesn't distinguish between a person's actual first name
+     * and any other names, and in any case is not the definitive source of
+     * naming information; therefore in practice this will usually be the
+     * user's given name.
+     * @example "Rebecca"
+     */
+    firstName?: string;
+    /** The user's preferred name. */
+    preferredName?: string | null;
+    /**
+     * The user's preferred name, if set. If preferred name is not set, returns the user's first name.
+     * @example "John"
+     */
+    givenName?: string;
+    /**
+     * The user's surname.
+     * @example "White"
+     */
+    lastName?: string | null;
+    /**
+     * The user's full name: usually, this is the title, first name and last
+     * name joined together.
+     * @example "Mr John Smith"
+     */
+    fullName?: string;
+    /**
+     * The name of the Role, may not be unique.
+     * @example "Staff"
+     */
+    role?: string;
+    /**
+     * The type of this role. Different role types have different levels of
+     * access to different parts of Schoolbox.
+     */
+    roleType?: GroupUserListRoleTypeEnum;
+    /** @example true */
+    isStaff?: boolean;
+    /**
+     * Comma-separated list of campuses to which the user belongs.
+     * @example "Senior, Junior"
+     */
+    campus?: string;
+    /**
+     * Name of the year level to which the user belongs, or blank if not applicable.
+     * @example "Year 9"
+     */
+    yearLevel?: string;
+    /**
+     * Name of the school house to which the user belongs, or blank if not applicable.
+     * @example "Griffindor"
+     */
+    house?: string;
+    /**
+     * The type of access the user has to the group - read, write, or admin.
+     * @example "read"
+     */
+    accessType?: GroupUserListAccessTypeEnum;
+  }[];
+}
+
+/**
  * The type of this role. Different role types have different levels of
  * access to different parts of Schoolbox.
  */
@@ -701,6 +974,131 @@ export enum UserGroupMembershipWritableFieldsMembershipEnum {
 export enum UserGroupMembershipWritableFieldsEnrolmentStatusEnum {
   Enroled = "enroled",
   Pending = "pending",
+}
+
+/**
+ * The level of access that users have to this group.
+ *
+ * * `private`: membership is by invitation only
+ * * `moderated`: users may apply for membership, but must be approved
+ * * `free`: users may join and leave at any time
+ */
+export enum UserGroupMembershipListTypeEnum {
+  Private = "private",
+  Moderated = "moderated",
+  Free = "free",
+}
+
+/**
+ * The enrolment status of the user for this group.
+ *
+ * * `enroled`: the user is enroled in the group with the 'membership' permission
+ * * `notEnroled`: the user is not enroled in the group
+ * * `pending`: the user has requested to join the group and is currently
+ *   awaiting approval by a group admin
+ */
+export enum UserGroupMembershipListEnrolmentStatusEnum {
+  Enroled = "enroled",
+  NotEnroled = "notEnroled",
+  Pending = "pending",
+}
+
+/**
+ * The type of membership that this user has.
+ *
+ * * `admin`: the user is the administrator of this group: they may add
+ *   and remove members, change the group's permissions and disband the
+ *   group
+ * * `write`: the user may create content within the group
+ * * `read`: the user may view content within the group, and may be
+ *   notified of and may participate in group events
+ * * `none`: the user is not a member of the group
+ */
+export enum UserGroupMembershipListMembershipEnum {
+  Admin = "admin",
+  Write = "write",
+  Read = "read",
+  None = "none",
+}
+
+/**
+ * The level of access that users have to this group.
+ *
+ * * `private`: membership is by invitation only
+ * * `moderated`: users may apply for membership, but must be approved
+ * * `free`: users may join and leave at any time
+ */
+export enum UserGroupMembershipItemTypeEnum {
+  Private = "private",
+  Moderated = "moderated",
+  Free = "free",
+}
+
+/**
+ * The enrolment status of the user for this group.
+ *
+ * * `enroled`: the user is enroled in the group with the 'membership' permission
+ * * `notEnroled`: the user is not enroled in the group
+ * * `pending`: the user has requested to join the group and is currently
+ *   awaiting approval by a group admin
+ */
+export enum UserGroupMembershipItemEnrolmentStatusEnum {
+  Enroled = "enroled",
+  NotEnroled = "notEnroled",
+  Pending = "pending",
+}
+
+/**
+ * The type of membership that this user has.
+ *
+ * * `admin`: the user is the administrator of this group: they may add
+ *   and remove members, change the group's permissions and disband the
+ *   group
+ * * `write`: the user may create content within the group
+ * * `read`: the user may view content within the group, and may be
+ *   notified of and may participate in group events
+ * * `none`: the user is not a member of the group
+ */
+export enum UserGroupMembershipItemMembershipEnum {
+  Admin = "admin",
+  Write = "write",
+  Read = "read",
+  None = "none",
+}
+
+/**
+ * The level of access that users have to this group.
+ *
+ * * `private`: membership is by invitation only
+ * * `moderated`: users may apply for membership, but must be approved
+ * * `free`: users may join and leave at any time
+ * @example "private"
+ */
+export enum GroupUserListAccessEnum {
+  Private = "private",
+  Moderated = "moderated",
+  Free = "free",
+}
+
+/**
+ * The type of this role. Different role types have different levels of
+ * access to different parts of Schoolbox.
+ */
+export enum GroupUserListRoleTypeEnum {
+  Staff = "staff",
+  Student = "student",
+  Parent = "parent",
+  Guest = "guest",
+}
+
+/**
+ * The type of access the user has to the group - read, write, or admin.
+ * @example "read"
+ */
+export enum GroupUserListAccessTypeEnum {
+  Read = "read",
+  Write = "write",
+  Admin = "admin",
 }
 
 export interface UserSearchParams {
@@ -830,98 +1228,8 @@ export interface UserDeleteParams {
   id: string;
 }
 
-/**
- * The level of access that users have to this group.
- *
- * * `private`: membership is by invitation only
- * * `moderated`: users may apply for membership, but must be approved
- * * `free`: users may join and leave at any time
- */
-export enum UserGroupMembershipSearchTypeEnum {
-  Private = "private",
-  Moderated = "moderated",
-  Free = "free",
-}
-
-/**
- * The enrolment status of the user for this group.
- *
- * * `enroled`: the user is enroled in the group with the 'membership' permission
- * * `notEnroled`: the user is not enroled in the group
- * * `pending`: the user has requested to join the group and is currently
- *   awaiting approval by a group admin
- */
-export enum UserGroupMembershipSearchEnrolmentStatusEnum {
-  Enroled = "enroled",
-  NotEnroled = "notEnroled",
-  Pending = "pending",
-}
-
-/**
- * The type of membership that this user has.
- *
- * * `admin`: the user is the administrator of this group: they may add
- *   and remove members, change the group's permissions and disband the
- *   group
- * * `write`: the user may create content within the group
- * * `read`: the user may view content within the group, and may be
- *   notified of and may participate in group events
- * * `none`: the user is not a member of the group
- */
-export enum UserGroupMembershipSearchMembershipEnum {
-  Admin = "admin",
-  Write = "write",
-  Read = "read",
-  None = "none",
-}
-
 export interface UserGroupMembershipSearchParams {
   id: string;
-}
-
-/**
- * The level of access that users have to this group.
- *
- * * `private`: membership is by invitation only
- * * `moderated`: users may apply for membership, but must be approved
- * * `free`: users may join and leave at any time
- */
-export enum UserGroupMembershipGetTypeEnum {
-  Private = "private",
-  Moderated = "moderated",
-  Free = "free",
-}
-
-/**
- * The enrolment status of the user for this group.
- *
- * * `enroled`: the user is enroled in the group with the 'membership' permission
- * * `notEnroled`: the user is not enroled in the group
- * * `pending`: the user has requested to join the group and is currently
- *   awaiting approval by a group admin
- */
-export enum UserGroupMembershipGetEnrolmentStatusEnum {
-  Enroled = "enroled",
-  NotEnroled = "notEnroled",
-  Pending = "pending",
-}
-
-/**
- * The type of membership that this user has.
- *
- * * `admin`: the user is the administrator of this group: they may add
- *   and remove members, change the group's permissions and disband the
- *   group
- * * `write`: the user may create content within the group
- * * `read`: the user may view content within the group, and may be
- *   notified of and may participate in group events
- * * `none`: the user is not a member of the group
- */
-export enum UserGroupMembershipGetMembershipEnum {
-  Admin = "admin",
-  Write = "write",
-  Read = "read",
-  None = "none",
 }
 
 export interface UserGroupMembershipGetParams {
@@ -951,41 +1259,6 @@ export interface UserGroupMembershipDeleteParams {
 
 export interface ApiusernotifyApiUserNotifyParams {
   id: string;
-}
-
-/**
- * The level of access that users have to this group.
- *
- * * `private`: membership is by invitation only
- * * `moderated`: users may apply for membership, but must be approved
- * * `free`: users may join and leave at any time
- * @example "private"
- */
-export enum GroupGetUsersInGroupAccessEnum {
-  Private = "private",
-  Moderated = "moderated",
-  Free = "free",
-}
-
-/**
- * The type of this role. Different role types have different levels of
- * access to different parts of Schoolbox.
- */
-export enum GroupGetUsersInGroupRoleTypeEnum {
-  Staff = "staff",
-  Student = "student",
-  Parent = "parent",
-  Guest = "guest",
-}
-
-/**
- * The type of access the user has to the group - read, write, or admin.
- * @example "read"
- */
-export enum GroupGetUsersInGroupAccessTypeEnum {
-  Read = "read",
-  Write = "write",
-  Admin = "admin",
 }
 
 export interface GroupGetUsersInGroupParams {

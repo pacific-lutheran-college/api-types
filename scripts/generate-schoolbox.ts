@@ -18,6 +18,60 @@ const outputDir = path.resolve(process.cwd(), "packages/schoolbox/src");
 const specFileContent = fs.readFileSync(specPath, "utf-8");
 const specOriginal = yaml.load(specFileContent) as any;
 
+function sanitizeName(input: string) {
+  return input.replace(/[^a-zA-Z0-9-_]/g, "-");
+}
+
+function ensureInlineResponseSchemas(spec: any) {
+  if (!spec.components) spec.components = {};
+  if (!spec.components.schemas) spec.components.schemas = {};
+
+  const ensureSchemaRef = (schemaName: string, target: any) => {
+    if (!target || typeof target !== "object") return;
+
+    const appJson = target.content?.["application/json"];
+    const schema = appJson?.schema;
+    if (!schema || schema.$ref) return;
+
+    if (!spec.components.schemas[schemaName]) {
+      spec.components.schemas[schemaName] = schema;
+    }
+
+    target.content["application/json"].schema = {
+      $ref: `#/components/schemas/${schemaName}`,
+    };
+  };
+
+  if (spec.components.responses) {
+    for (const [responseName, response] of Object.entries(
+      spec.components.responses,
+    )) {
+      ensureSchemaRef(responseName, response);
+    }
+  }
+
+  if (spec.paths) {
+    for (const [pathUrl, methods] of Object.entries(spec.paths)) {
+      for (const [method, operation] of Object.entries(methods as any)) {
+        const responses = (operation as any)?.responses;
+        if (!responses) continue;
+
+        for (const [statusCode, response] of Object.entries(responses)) {
+          if ((response as any)?.$ref) continue;
+
+          const operationId = (operation as any)?.operationId || "operation";
+          const schemaName = sanitizeName(
+            `${operationId}-${String(method).toLowerCase()}-${statusCode}-response`,
+          );
+          ensureSchemaRef(schemaName, response);
+        }
+      }
+    }
+  }
+}
+
+ensureInlineResponseSchemas(specOriginal);
+
 // Extract unique top-level tags
 const uniqueTags = new Set<string>();
 

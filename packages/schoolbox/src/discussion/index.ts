@@ -197,6 +197,82 @@ export interface DiscussionThreadRead {
   children?: DiscussionCommentReadList;
 }
 
+export interface DiscussionCommentItem {
+  /** The ID of this comment. */
+  id?: number;
+  author?: {
+    /** The ID of this user. */
+    id?: number;
+    /**
+     * This user's ID in the school's School Information System (SIS).
+     *
+     * This value is used to query the SIS for data that is stored in the SIS,
+     * in particular:
+     * * relationships with other users
+     * * class enrolments
+     * * timetabled classes
+     */
+    externalId?: ExternalId;
+    /** The user's title (Mr., Ms., etc.). */
+    title?: string | null;
+    /** The user's first name. */
+    firstname?: string | null;
+    /** The user's full name. */
+    fullName?: string | null;
+    /** The user's given name. */
+    givenName?: string | null;
+    /** The user's last name. */
+    lastname?: string | null;
+    /** The user's preferred name. */
+    preferredName?: string | null;
+    _links?: {
+      avatar?: {
+        /**
+         * Is the currently authenticated user authorized to view the resource
+         * pointed to by `href`?
+         *
+         * If this value is `null`, then it is not known whether the user may
+         * view this resource.
+         */
+        auth?: boolean | null;
+        /** @format uri */
+        href?: string | null;
+      };
+      profile?: {
+        /**
+         * Is the currently authenticated user authorized to view the resource
+         * pointed to by `href`?
+         *
+         * If this value is `null`, then it is not known whether the user may
+         * view this resource.
+         */
+        auth?: boolean | null;
+        /** @format uri */
+        href?: string | null;
+      };
+    };
+  };
+  content?: string;
+  /** The date as a RFC3339 string. eg. "2018-01-28T00:00:00+11:00". */
+  createdAt?: DateTimeString;
+  /** The date as a RFC3339 string. eg. "2018-01-28T00:00:00+11:00". */
+  updatedAt?: DateTimeString;
+  _links?: {
+    delete?: {
+      /** @format uri */
+      href?: string | null;
+      /**
+       * Is the currently authenticated user authorized to view the resource
+       * pointed to by `href`?
+       *
+       * If this value is `null`, then it is not known whether the user may
+       * view this resource.
+       */
+      auth?: boolean | null;
+    };
+  };
+}
+
 /** Common fields for discussion threads. */
 export interface CreateThreadPayload {
   /** Is the thread open for further comments? */

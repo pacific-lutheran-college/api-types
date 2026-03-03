@@ -54,11 +54,25 @@ export interface AuthenticationJwt {
   jwt: string;
 }
 
+export interface AuthenticationSuccessUser {
+  /** A schoolbox user ID number */
+  id?: number;
+  /** A key for accessing resources on behalf of that user like RSS or VCAL feeds */
+  key?: string;
+  /**
+   * The role type the user has in Schoolbox
+   * @example "parent"
+   */
+  role?: AuthenticationSuccessUserRoleEnum;
+  /** The user who logged into the device */
+  username?: string;
+}
+
 /**
  * The role type the user has in Schoolbox
  * @example "parent"
  */
-export enum ApiSessionGetRoleEnum {
+export enum AuthenticationSuccessUserRoleEnum {
   Staff = "staff",
   Student = "student",
   Parent = "parent",

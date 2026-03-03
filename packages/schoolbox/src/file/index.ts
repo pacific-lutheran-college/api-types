@@ -90,6 +90,60 @@ export interface File {
   };
 }
 
+export interface FileItem {
+  /** @example "School-Events-PNG-2" */
+  fileName?: string;
+  /** @example "School Events" */
+  title?: string;
+  /**
+   * @example "Banner image for 2022 school events
+   * "
+   */
+  description?: string;
+  /** @example false */
+  hidden?: boolean;
+  /** @example "image/png" */
+  mimeType?: string;
+  /**
+   * file size in bytes
+   * @example 117407
+   */
+  filesize?: number;
+}
+
+export interface StorageAsyncUploadPostDefaultResponse {
+  /** The HTTP response code, usually 200 for a successful upload. */
+  error?: number;
+  /**
+   * A pointer to the now uploaded file within Schoolbox, in the format
+   * `store:$hash`.
+   *
+   * `store` is the locator used to find the file: `$hash` is its
+   * location within the store.
+   */
+  hash?: string;
+  /**
+   * A user-friendly message for what went wrong with the upload
+   * (if anything).
+   */
+  message?: string;
+  /** File metadata. */
+  meta?: {
+    /** The mimetype of the uploaded file. */
+    type?: string;
+    /** The uploaded file's size, in bytes. */
+    size?: number;
+    /** The uploaded file's name. */
+    name?: string;
+    /**
+     * A description of how a file is stored in Schoolbox's internal file storage,
+     * and of how it may be retrieved.
+     */
+    file?: File;
+  };
+  success?: boolean;
+}
+
 /** The type of the uploaded file. */
 export enum FileTypeEnum {
   Image = "image",

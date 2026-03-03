@@ -339,6 +339,214 @@ export interface ReadMore {
   available?: boolean;
 }
 
+export interface Save {
+  /** Identifying ID number for most objects within Schoolbox */
+  articleId?: Id;
+  /**
+   * A base-64 encoded URL to redirect to, once processing of the entity on this
+   * page is completed.
+   */
+  returnUrl?: ReturnUrl;
+  /**
+   * Was the article successfully saved?
+   *
+   * Note this doesn't mean that the article is necessary ready for
+   * publishing.
+   */
+  success?: boolean;
+  /**
+   * The URL via which the user may approve this article.
+   * @format uri
+   */
+  approveRoute?: string;
+  /**
+   * The URL via which the user may submit this article for publish
+   * or review.
+   * @format uri
+   */
+  submitRoute?: string;
+  /**
+   * The URL via which the user may update this article.
+   * @format uri
+   */
+  updateRoute?: string;
+}
+
+export type CommsNewsGetTopicsGet200Response = Topic[];
+
+export interface CommsNewsGetDetailGet200Response {
+  /** Has the authenticated user saved this article for later? */
+  isSavedForLater?: boolean;
+  article?: CommonFields & {
+    /** News article body, as raw HTML. */
+    body?: Body;
+    /** The author's details. */
+    author?: Author;
+    /** Files attached to this article. */
+    attachedFiles?: File[];
+    /**
+     * A human-readable representation of the article's current
+     * status.
+     *
+     * * `Drafted`: the article is a draft only
+     * * `Awaiting Moderation`: the article has been submitted
+     *   for approval, but is not yet approved or rejected
+     * * `Awaiting Publication`: the article has been approved
+     *   for publishing, but its publish date has not been
+     *   reached yet
+     * * `Rejected`: the article has been rejected for
+     *   publishing
+     * * `Published`: the article has been published
+     * * `Archived`: the article has expired; whilst it is no
+     *   longer published, it is still readable in the archive
+     */
+    status?: Status;
+    /**
+     * When did the article's status change to its current
+     * value? (RFC3339 string eg. "2018-01-28T00:00:00+11:00").
+     */
+    statusDate?: StatusDate;
+    /**
+     * Is this article sticky?
+     *
+     * If so, it will always display at the top of the list of
+     * articles.
+     */
+    sticky?: Sticky;
+    _links?: Links;
+  };
+}
+
+export interface CommsNewsPostDeletePost200Response {
+  /** Was the article successfully deleted? */
+  success?: boolean;
+  /**
+   * A base-64 encoded URL to redirect to, once processing of the entity on this
+   * page is completed.
+   */
+  returnUrl?: ReturnUrl;
+}
+
+export interface CommsNewsModerationSetStatusPostDefaultResponse {
+  /**
+   * * `0`: successfully approved
+   * * `1`:
+   *   * some attributes invalid (if the response code was invalid)
+   *   * some other user has already put the article in this state,
+   *     and there is otherwise no difference
+   *     (if the response code was valid)
+   * * `2`: some other user has already put the article in this
+   *   state, and there is a conflict in the reason for
+   *   putting it in this state
+   * * `3`: the article may not be put into this state
+   * * `4`: an unspecified error
+   */
+  errorCode?: number;
+  /** A brief message detailing what succeeded, or went wrong */
+  message?: string;
+  /**
+   * A URL to redirect to once the article state changes
+   * @format uri
+   */
+  redirect?: string;
+}
+
+export type CommsNewsSaveForLaterGetListGet200Response = Id[];
+
+export type CommsNewsSaveForLaterPostAddPost200Response = any[];
+
+export type CommsNewsSaveForLaterPostRemovePost200Response = any[];
+
+export type CommsNewsGetAuthoredArticlesGet200Response = (CommonFields & {
+  /** The author's details: currently, only their name. */
+  author?: AuthorNameOnly;
+  /**
+   * Is this article sticky?
+   *
+   * If so, it will always display at the top of the list of
+   * articles.
+   */
+  sticky?: Sticky;
+  readMore?: ReadMore;
+  _links?: Links;
+})[];
+
+export type CommsNewsGetListForIndexGet200Response = (CommonFields & {
+  /**
+   * A human-readable representation of the article's current
+   * status.
+   *
+   * * `Drafted`: the article is a draft only
+   * * `Awaiting Moderation`: the article has been submitted
+   *   for approval, but is not yet approved or rejected
+   * * `Awaiting Publication`: the article has been approved
+   *   for publishing, but its publish date has not been
+   *   reached yet
+   * * `Rejected`: the article has been rejected for
+   *   publishing
+   * * `Published`: the article has been published
+   * * `Archived`: the article has expired; whilst it is no
+   *   longer published, it is still readable in the archive
+   */
+  status?: Status;
+  /**
+   * When did the article's status change to its current
+   * value? (RFC3339 string eg. "2018-01-28T00:00:00+11:00").
+   */
+  statusDate?: StatusDate;
+  readMore?: ReadMore;
+  metadata?: {
+    /**
+     * The number of comments on this article.
+     *
+     * May be null, in which case there are no comments.
+     */
+    commentCount?: number;
+  };
+  /**
+   * The number of attachments on this article.
+   *
+   * May be null, in which case there are no attachments.
+   */
+  attachments?: number;
+  /**
+   * The datetime the news article was originally read by the user.
+   *
+   * May be null, in which case the user has not read the article
+   */
+  viewedAt?: DateTimeString;
+  _links?: Links;
+})[];
+
+export type CommsNewsGetListForHomepageGet200Response = (CommonFields & {
+  /** News article body, as raw HTML. */
+  body?: Body;
+  /** The author's details. */
+  author?: Author;
+  /**
+   * A human-readable representation of the article's current
+   * status.
+   *
+   * * `Drafted`: the article is a draft only
+   * * `Awaiting Moderation`: the article has been submitted
+   *   for approval, but is not yet approved or rejected
+   * * `Awaiting Publication`: the article has been approved
+   *   for publishing, but its publish date has not been
+   *   reached yet
+   * * `Rejected`: the article has been rejected for
+   *   publishing
+   * * `Published`: the article has been published
+   * * `Archived`: the article has expired; whilst it is no
+   *   longer published, it is still readable in the archive
+   */
+  status?: Status;
+  /**
+   * When did the article's status change to its current
+   * value? (RFC3339 string eg. "2018-01-28T00:00:00+11:00").
+   */
+  statusDate?: StatusDate;
+})[];
+
 /** The type of the uploaded file. */
 export enum FileTypeEnum {
   Image = "image",

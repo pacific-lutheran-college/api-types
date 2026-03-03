@@ -1300,6 +1300,73 @@ export interface DueWorkFeedbackList {
   date?: string;
 }
 
+export interface EvidenceCohortPayload {
+  /** @minItems 0 */
+  data?: LearningMomentPayloadItem[];
+  /** Metadata for lists of items retrieved */
+  metadata?: ListMetadata;
+}
+
+export interface EvidenceList {
+  /** @minItems 0 */
+  data?: (EvidenceList | BadgeAwardList | DueWorkFeedbackList)[];
+  /** Metadata for lists of items retrieved */
+  metadata?: ListMetadata;
+}
+
+/** An array of learning moments. */
+export type PutEvidenceBulkPublishPut200Response = (LearningMomentResponse & {
+  /** @example "published" */
+  currentState?: any;
+})[];
+
+/** An array of learning moments. */
+export type PutEvidenceBulkRejectPut200Response = (LearningMomentResponse & {
+  /** @example "rejected" */
+  currentState?: any;
+})[];
+
+/** An array of learning moments. */
+export type PostEvidenceDraftMultiUserPost200Response =
+  (LearningMomentResponse & {
+    /** @example "draft" */
+    currentState?: any;
+  })[];
+
+/** An array of learning moments. */
+export type PostEvidencePublishMultiUserPost200Response =
+  (LearningMomentResponse & {
+    /** @example "published" */
+    currentState?: any;
+  })[];
+
+/** An array of learning moments. */
+export type PostEvidenceSubmitMultiUserPost200Response =
+  (LearningMomentResponse & {
+    /** @example "submitted" */
+    currentState?: any;
+  })[];
+
+export type PutEvidenceDraftPut200Response = LearningMomentResponse & {
+  /** @example "draft" */
+  currentState?: any;
+};
+
+export type PutEvidencePublishPut200Response = LearningMomentResponse & {
+  /** @example "published" */
+  currentState?: any;
+};
+
+export type PutEvidenceRejectPut200Response = LearningMomentResponse & {
+  /** @example "rejected" */
+  currentState?: any;
+};
+
+export type PutEvidenceSubmitPut200Response = LearningMomentResponse & {
+  /** @example "submitted" */
+  currentState?: any;
+};
+
 /**
  * The type of this role. Different role types have different levels of
  * access to different parts of Schoolbox.

@@ -80,11 +80,30 @@ export type RegistrationUsernamePassword = AuthenticationUsernamePassword &
 
 export type RegistrationJwt = AuthenticationJwt & RegistrationBase;
 
+export interface AuthenticationSuccessUser {
+  /** A schoolbox user ID number */
+  id?: number;
+  /** A key for accessing resources on behalf of that user like RSS or VCAL feeds */
+  key?: string;
+  /**
+   * The role type the user has in Schoolbox
+   * @example "parent"
+   */
+  role?: AuthenticationSuccessUserRoleEnum;
+  /** The user who logged into the device */
+  username?: string;
+}
+
+export interface MobileRegisterPost400Response {
+  /** Error message indicating required fields */
+  required?: string;
+}
+
 /**
  * The role type the user has in Schoolbox
  * @example "parent"
  */
-export enum MobileRegisterRoleEnum {
+export enum AuthenticationSuccessUserRoleEnum {
   Staff = "staff",
   Student = "student",
   Parent = "parent",
